@@ -1,0 +1,29 @@
+{
+  "name": "bca-estatement-downlaoder",
+  "version": "1.0.0",
+  "description": "Download BCA eStatement PDFs",
+  "repository": "gedex/bca-estatement-downloader",
+  "bin": {
+    "bca-estatement-downloader": "index.js"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "files": [
+    "downloader.js",
+    "index.js"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Akeda Bagus <admin@gedex.web.id>",
+  "license": "MIT",
+  "homepage": "https://github.com/gedex/bca-estatement-downloader",
+  "dependencies": {
+    "command-exists": "^1.2.8",
+    "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1",
+    "puppeteer": "^1.11.0",
+    "tmp": "0.0.33"
+  }
+}
