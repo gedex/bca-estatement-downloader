@@ -126,7 +126,7 @@ class Downloader {
 	async bulkDownloadEStatement() {
 		await this.page.goto( E_STATEMENT_URL );
 
-		for ( const [ month, year ] of this.getMonthYearToDownload() ) {
+		for ( const [ month, year ] of this.getMonthYearToDownload( this.options.maxDownload ) ) {
 			await this.downloadEStatement( month, year );
 		}
 	}
@@ -205,20 +205,19 @@ class Downloader {
 		return path.resolve( name, '.txt' );
 	}
 
-	getMonthYearToDownload() {
+	getMonthYearToDownload( n = 24 ) {
 		const date = new Date();
 		const month = date.getMonth() + 1;
 		const year = date.getFullYear();
 
 		const d = [];
 		let j = month - 1;
-		for ( let i = year; i > ( year - 2 ); i-- ) {
-			if ( d.length >= 24 ) {
-				break;
-			}
-			while ( j > 0 ) {
+		for ( let i = year; i > ( year - 3 ); i-- ) {
+			for ( ; j > 0; j-- )  {
+				if ( d.length >= n ) {
+					return d;
+				}
 				d.push( [ j.toString(), i.toString() ] );
-				j--;
 			}
 			j = 12;
 		}
